@@ -1,0 +1,42 @@
+1. Create a static site
+AWS: Zip website files, Go into AWS portal, enter S3. Create static site. 
+Upload zip file.
+Verify: https://d1wyyu8adx2l1i.cloudfront.net/
+
+2. Create a wordpress website
+AWS: Create an RDS Aurora database instance.
+Download wordpress tarball locally. Extract. Download .ebextensions from github,
+modify efs-create.config to match your VPC and subnet ID's which you will take 
+from AWS console. Modify dev.config to change 127.0.0.1 to your WAN IP of your 
+local network, or change to 0.0.0.0/0 (insecure).
+Zip those files.
+Launch EBS instance using PHP platform, uploading that zip file.
+Change custom configuration to Amazon Linux running php 5.6.
+Configure WP to use the database.
+Verify: https://wp-project.us-east-2.elasticbeanstalk.com/
+
+3. Deploy a Node.js Application
+AWS: Create an EBS web instance using Node.js platform, using sample config.
+Enter into EBS Management Console, chose node.js project, chose "Upload and Deploy", 
+upload zip file from sample application.
+Verify: https://nodejs-proj.us-east-2.elasticbeanstalk.com/
+
+4. Deploy a LAMP stack application
+AWS: Create an EBS web instance using PHP, creating an RDS instance along with it.
+Enter into EBS Console, chose the project, chose Upload and Deploy"
+upload zip file from sample application.
+Verify: https://lampstack-env.us-east-2.elasticbeanstalk.com/
+
+5. Deploy Drupal
+AWS: Create an EBS web server instance using PHP, creating an RDS instance along with it.
+Download drupal. Modify config files to match VPC and Subnet ID's, create archive, upload zip to EBS.
+Configure Drupal to use RDS instance.
+Verify: http://drupal-ebs.us-east-2.elastic.beanstalk.com/
+
+6. Deploying Python App
+AWS: Download Django locally. Set up virtual enviornment, install django with pip.
+Create .ebextensions directory and add a django.conf file specifying WSGI path.
+Deploy either through console, or through CLI using  eb init command.
+Verify: https://pythoninst-env.us-east-2.elasticbeanstalk.com/
+
+
